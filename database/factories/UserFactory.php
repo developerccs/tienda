@@ -2,6 +2,7 @@
 
 use App\User;
 use App\Categoria;
+use App\Producto;
 use Faker\Generator as Faker;
 
 /*
@@ -31,5 +32,16 @@ $factory->define(Categoria::class, function (Faker $faker) {
     return [
         'nombre' => $faker->word,
         'descripcion' => $faker->paragraph(1),
+    ];
+});
+
+$factory->define(Producto::class, function (Faker $faker) {
+    return [
+        'nombre' => $faker->word,
+        'descripcion' => $faker->paragraph(1),
+        'cantidad' => $faker->numberBetween(1,10),
+        'estatus' => $faker->randomElement([Producto::PRODUCTO_DISPONIBLE, Producto::PRODUCTO_NO_DISPONIBLE]),
+        'imagen' => $faker->randomElement(['1.jpg','2.jpg','3.jpg']),
+        'vendedor_id' => User::all()->random()->id,
     ];
 });
