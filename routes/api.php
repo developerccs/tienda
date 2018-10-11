@@ -33,5 +33,5 @@ Route::resource('transacciones','Transaccion\TransaccionController',
 Route::resource('vendedores','Vendedor\VendedorController',
                 ['only' => ['index','show']]);
 
-Route::resource('user','User\UserController',
+Route::resource('users','User\UserController',
                 ['except' => ['create','edit']]);
