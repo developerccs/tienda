@@ -1,11 +1,10 @@
 <?php
 
 use App\User;
-use App\Categoria;
-use App\Producto;
-use App\Transaccion;
 use App\Vendedor;
-
+use App\Producto;
+use App\Categoria;
+use App\Transaccion;
 use Faker\Generator as Faker;
 
 /*
@@ -49,13 +48,12 @@ $factory->define(Producto::class, function (Faker $faker) {
     ];
 });
 
+
 $factory->define(Transaccion::class, function (Faker $faker) {
-
-    $vendedor = Vendedor::has('productos')->get()->random();
-    $comprador = User::all()->except($vendedor->id)->random();
-
+	$vendedor = Vendedor::has('productos')->get()->random();
+	$comprador = User::all()->except($vendedor->id)->random();
     return [
-        'cantidad' => $faker->numberBetween(1,3),
+        'cantidad' => $faker->numberBetween(1, 3),
         'comprador_id' => $comprador->id,
         'producto_id' => $vendedor->productos->random()->id,
     ];
