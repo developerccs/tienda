@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         Producto::flushEventListeners();
         Transaccion::flushEventListeners();
 
-        $cantidadUsuarios = 200;
+        $cantidadUsuarios = 1000;
         $cantidadCategorias = 30;
         $cantidadProductos = 1000;
         $cantidadTransacciones = 1000;
