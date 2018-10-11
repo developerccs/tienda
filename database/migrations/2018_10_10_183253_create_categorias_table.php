@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTransaccionsTable extends Migration
+class CreateCategoriasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateTransaccionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('transaccions', function (Blueprint $table) {
+        Schema::create('categorias', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre');
+            $table->string('descripcion', 1000);
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateTransaccionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaccions');
+        Schema::dropIfExists('categorias');
     }
 }
