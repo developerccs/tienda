@@ -93,14 +93,16 @@ class UserController extends ApiController
 
         if ($request->has('admin')) {
             if (!$user->esVerificado()) {
-                return response()->json(['error' => 'UNICAMENTE LOS USUARIOS VERIFICADOS PUEDEN CARMBIAR SU VALOR DE ADMINISTRADOR', 'code' => 409], 409);
+                return $this->errorResponse('UNICAMENTE LOS USUARIOS VERIFICADOS 
+                              PUEDEN CARMBIAR SU VALOR DE ADMINISTRADOR', 409);
             }
             $user->admin = $request->admin;
         }
 
 
         if (!$user->isDirty()) {
-            return response()->json(['error' => ' SE DEBE ESPECIFICAR AL MENOS UN VALOR DIFERENTE PARA ACTUALIZAR', 'code' => 422, 422]);
+            return $this->errorResponse('SE DEBE ESPECIFICAR AL MENOS UN VALOR 
+                          DIFERENTE PARA ACTUALIZAR', 422);
         }
 
         $user->save();
