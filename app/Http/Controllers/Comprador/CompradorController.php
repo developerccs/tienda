@@ -13,7 +13,7 @@ class CompradorController extends ApiController
     {
         $compradores = Comprador::has('transacciones')->get();
 
-        return response()->json(['data' => $compradores], 200);
+        return $this->showAll($compradores);
     }
 
     public function show($id)
@@ -21,6 +21,7 @@ class CompradorController extends ApiController
         $comprador = Comprador::has('transacciones')->findOrFail($id);
 
         return response()->json(['data' => $comprador], 200);
+        return $this->showOne($comprador);
     }
 
 }
