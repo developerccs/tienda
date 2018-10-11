@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Producto;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 
-class ProductoController extends Controller
+class ProductoController extends ApiController
 {
     /**
      * Display a listing of the resource.

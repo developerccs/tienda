@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Comprador;
 
 use App\Comprador;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 
-class CompradorController extends Controller
+class CompradorController extends ApiController
 {
  
     public function index()
