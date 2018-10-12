@@ -39,5 +39,42 @@ class VendedorProductoController extends ApiController
 
         return $this->showOne($producto, 201);
     }
+
+    public function update(Request $request, Vendedor $vendedore, Producto $producto)
+    {
+        $reglas = [
+            'cantidad' => 'integer|min:1',
+            'estatus' => 'in: ' . Producto::PRODUCTO_DISPONIBLE . ',' . Producto::PRODUCTO_NO_DISPONIBLE,
+            'imagen' => 'image',
+        ];
+
+        $this->validate($request, $reglas);
+
+        if ($vendedore->id != $producto->vendedor_id) {
+            return $this->errorResponse('El vendedor no es el vendedor real
+                                        del producto', 422);
+        }
+
+        $producto->fill($request->only([
+            'nombre',
+            'descripcion',
+            'cantidad',
+        ]));
+
+        if ($request->has('estatus')) {
+            $producto->estatus = $request->estatus;
+            if ($producto->estaDisponible() && $producto->categorias()->count() == 0) {
+                return $this->errorResponse('Un producto activo debe tener al menos una categoría', 409);
+            }
+        }
+
+        if ($producto->isClean()) {
+            return $this->errorResponse('Se debe especificar al menos un valor diferente para actualizar', 422);
+        }
+
+        $producto->save();
+
+        return $this->showOne($producto);
+    }
 }
 
