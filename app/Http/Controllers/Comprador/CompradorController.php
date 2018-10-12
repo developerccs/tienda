@@ -16,12 +16,9 @@ class CompradorController extends ApiController
         return $this->showAll($compradores);
     }
 
-    public function show($id)
+    public function show(Comprador $compradore)
     {
-        $comprador = Comprador::has('transacciones')->findOrFail($id);
-
-        return response()->json(['data' => $comprador], 200);
-        return $this->showOne($comprador);
+        return $this->showOne($compradore);
     }
 
 }

@@ -13,15 +13,13 @@ class VendedorController extends ApiController
     {
         $vendedores = Vendedor::has('productos')->get();
 
-        return response()->json(['data' => $vendedores], 200);
+        return $this->showAll($vendedores);
 
     }
 
-    public function show($id)
+    public function show(Vendedor $vendedore)
     {
-        $vendedor = Vendedor::has('productos')->findOrFail($id);
-
-        return response()->json(['data' => $vendedor], 200);
+        return $this->showOne($vendedore);
     }
 
 
