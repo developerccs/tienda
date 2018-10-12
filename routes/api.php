@@ -31,6 +31,8 @@ Route::resource('compradores.categorias','Comprador\CompradorCategoriaController
 
 Route::resource('categorias','Categoria\CategoriaController',
                 ['except' => ['create','edit']]);
+Route::resource('categorias.productos','Categoria\CategoriaProductoController',
+                ['only' => ['index']]);
 
 Route::resource('productos','Producto\ProductoController',
                 ['only' => ['index','show']]);
