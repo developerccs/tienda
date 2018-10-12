@@ -7,6 +7,7 @@ use App\User;
 use App\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use App\Http\Controllers\ApiController;
 
 class VendedorProductoController extends ApiController
@@ -50,6 +51,8 @@ class VendedorProductoController extends ApiController
 
         $this->validate($request, $reglas);
 
+        $this->verificarVendedor($vendedore, $producto);
+
         if ($vendedore->id != $producto->vendedor_id) {
             return $this->errorResponse('El vendedor no es el vendedor real
                                         del producto', 422);
@@ -75,6 +78,22 @@ class VendedorProductoController extends ApiController
         $producto->save();
 
         return $this->showOne($producto);
+    }
+
+    public function destroy(Vendedor $vendedore, Producto $producto)
+    {
+        $this->verificarVendedor($vendedore, $producto);
+
+        $producto->delete();
+
+        return $this->showOne($producto);
+    }
+
+    protected function verificarVendedor(Vendedor $vendedore, Producto $producto)
+    {
+        if ($vendedore->id != $producto->vendedor_id) {
+            throw new HttpException(422, 'El vendedor especificado no es el vendedor real del producto');
+        }
     }
 }
 
