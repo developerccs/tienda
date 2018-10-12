@@ -11,7 +11,7 @@ class UserController extends ApiController
     public function index()
     {
         $usuarios = User::all();
-        return response()->json(['data' => $usuarios],200);
+        return $this->showAll($usuarios, 200);
     }
 
     public function store(Request $request)
@@ -32,7 +32,7 @@ class UserController extends ApiController
 
         $usuario = User::create($campos);
 
-        return response()->json(['data' => $usuario], 201);
+        return $this->showOne($usuario, 201);
     }
 
     public function show(User $user)

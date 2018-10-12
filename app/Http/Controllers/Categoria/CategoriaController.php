@@ -2,84 +2,56 @@
 
 namespace App\Http\Controllers\Categoria;
 
+use App\Categoria;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
 
 class CategoriaController extends ApiController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $categorias = Categoria::all();
+
+        return $this->showAll($categorias);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $reglas = [
+            'nombre' => 'required',
+            'descripcion' => 'required'
+        ];
+
+        $this->validate($request, $reglas);
+
+        $categoria = Categoria::create($request->all());
+
+        return $this->showOne($categoria, 201);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show(Categoria $categoria)
     {
-        //
+        return $this->showOne($categoria);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function update(Request $request, Categoria $categoria)
     {
-        //
+
+        $categoria->fill($request->only([
+            'nombre',
+            'descripcion',
+        ]));
+        if ($categoria->isClean()) {
+            return $this->errorResponse('Debe especificar al menos un valor diferente para actualizar', 422);
+        }
+        $categoria->save();
+        return $this->showOne($categoria);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function destroy(Categoria $categoria)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $categoria->delete();
+        return $this->showOne($categoria);
     }
 }
