@@ -37,6 +37,8 @@ Route::resource('categorias.vendedores','Categoria\CategoriaVendedorController',
                 ['only' => ['index']]);
 Route::resource('categorias.transacciones','Categoria\CategoriaTransaccionController',
                 ['only' => ['index']]);
+Route::resource('categorias.compradores','Categoria\CategoriaCompradorController',
+                ['only' => ['index']]);
 
 Route::resource('productos','Producto\ProductoController',
                 ['only' => ['index','show']]);
