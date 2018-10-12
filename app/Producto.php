@@ -26,6 +26,10 @@ class Producto extends Model
         'vendedor_id'
     ];
 
+    protected $hidden = [
+        'pivot'
+    ];
+
     public function disponibilidad()
     {
         return $this->estatus == Producto::PRODUCTO_DISPONIBLE;
