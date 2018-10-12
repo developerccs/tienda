@@ -52,6 +52,14 @@ Route::resource('transacciones.vendedores','Transaccion\TransaccionVendedorContr
 
 Route::resource('vendedores','Vendedor\VendedorController',
                 ['only' => ['index','show']]);
+Route::resource('vendedores.transacciones','Vendedor\VendedorTransaccionController',
+                ['only' => ['index']]);
+Route::resource('vendedores.categorias','Vendedor\VendedorCategoriaController',
+                ['only' => ['index']]);
+Route::resource('vendedores.compradores','Vendedor\VendedorCompradorController',
+                ['only' => ['index']]);
+Route::resource('vendedores.productos','Vendedor\VendedorProductoController',
+                ['only' => ['index']]);
 
 Route::resource('users','User\UserController',
                 ['except' => ['create','edit']]);
