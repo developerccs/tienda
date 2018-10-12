@@ -10,9 +10,10 @@ class CompradorProductoController extends ApiController
 {
     public function index(Comprador $compradore)
     {
-        $productos = $compradore->transacciones()->with('producto')
-        ->get()
-        ->pluck('producto');
+        $productos = $compradore->transacciones()
+                    ->with('producto')
+                    ->get()
+                    ->pluck('producto');
 
         return $this->showAll($productos);
     }
