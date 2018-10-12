@@ -11,11 +11,12 @@ class CompradorVendedorController extends ApiController
 
     public function index(Comprador $compradore)
     {
-        $vendedores = $compradore->transacciones()->with('producto.vendedor')
-        ->get()
-        ->pluck('producto.vendedor')
-        ->unique('id')
-        ->values();
+        $vendedores = $compradore->transacciones()
+                    ->with('producto.vendedor')
+                    ->get()
+                    ->pluck('producto.vendedor')
+                    ->unique('id')
+                    ->values();
 
         return $this->showAll($vendedores);
 
