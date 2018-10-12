@@ -10,6 +10,14 @@ class VendedorCategoriaController extends ApiController
 {
     public function index(Vendedor $vendedore)
     {
-        //
+        $categorias = $vendedore->productos()
+                ->with('categorias')
+                ->get()
+                ->pluck('categorias')
+                ->collapse()
+                ->unique('id')
+                ->values();
+
+        return $this->showAll($categorias);
     }
 }
