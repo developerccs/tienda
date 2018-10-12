@@ -20,6 +20,8 @@ use Illuminate\Http\Request;
 
 Route::resource('compradores','Comprador\CompradorController',
                 ['only' => ['index','show']]);
+Route::resource('compradores.transacciones','Comprador\CompradorTransaccionController',
+                ['only' => ['index']]);
 
 Route::resource('categorias','Categoria\CategoriaController',
                 ['except' => ['create','edit']]);
