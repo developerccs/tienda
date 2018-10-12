@@ -24,8 +24,12 @@ class ProductoCategoriaController extends ApiController
         return $this->showAll($producto->categorias);
     }
 
-    public function destroy( Producto $producto)
+    public function destroy(Producto $producto, Categoria $categoria)
     {
-   
+        if (!$producto->categorias()->find($categoria->id)) {
+            return $this->errorResponse('La categoría especificada no es una categoría de este producto', 404);
+        }
+        $producto->categorias()->detach([$categoria->id]);
+        return $this->showAll($producto->categorias);
     }
 }
