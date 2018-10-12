@@ -59,7 +59,7 @@ Route::resource('vendedores.categorias','Vendedor\VendedorCategoriaController',
 Route::resource('vendedores.compradores','Vendedor\VendedorCompradorController',
                 ['only' => ['index']]);
 Route::resource('vendedores.productos','Vendedor\VendedorProductoController',
-                ['only' => ['index']]);
+                ['except' => ['create', 'show', 'edit']]);
 
 Route::resource('users','User\UserController',
                 ['except' => ['create','edit']]);

@@ -10,7 +10,9 @@ class VendedorProductoController extends ApiController
 {
     public function index(Vendedor $vendedore)
     {
-        //
+        $productos = $vendedore->productos;
+
+        return $this->showAll($productos);
     }
 }
 
