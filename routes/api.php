@@ -26,6 +26,8 @@ Route::resource('compradores.productos','Comprador\CompradorProductoController',
                 ['only' => ['index']]);
 Route::resource('compradores.vendedores','Comprador\CompradorVendedorController',
                 ['only' => ['index']]);
+Route::resource('compradores.categorias','Comprador\CompradorCategoriaController',
+                ['only' => ['index']]);
 
 Route::resource('categorias','Categoria\CategoriaController',
                 ['except' => ['create','edit']]);
