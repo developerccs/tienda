@@ -71,6 +71,11 @@ class VendedorProductoController extends ApiController
             }
         }
 
+        if ($request->hasFile('imagen')) {
+            Storage::delete($producto->imagen);
+            $producto->imagen = $request->imagen->store('');
+        }
+
         if ($producto->isClean()) {
             return $this->errorResponse('Se debe especificar al menos un valor diferente para actualizar', 422);
         }
