@@ -19,6 +19,7 @@ class CreateTransaccionsTable extends Migration
             $table->integer('comprador_id')->unsigned();
             $table->integer('producto_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('comprador_id')->references('id')->on('users');
             $table->foreign('producto_id')->references('id')->on('productos');
