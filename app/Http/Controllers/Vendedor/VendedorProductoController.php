@@ -33,7 +33,7 @@ class VendedorProductoController extends ApiController
         $data = $request->all();
 
         $data['estatus'] = Producto::PRODUCTO_NO_DISPONIBLE;
-        $data['imagen'] = '1.jpg';
+        $data['imagen'] = $request->imagen->store('');
         $data['vendedor_id'] = $vendedore->id;
 
         $producto = Producto::create($data);
