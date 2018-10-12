@@ -29,6 +29,11 @@ class User extends Authenticatable
         'admin',
     ];
 
+    protected $hidden = [
+        'password', 
+        'remember_token',
+        //'verification_token',
+    ];
 
     public function setNameAttribute($valor)    //mutador
     {
@@ -44,12 +49,6 @@ class User extends Authenticatable
     {
         return ucwords($valor);
     }
-
-    protected $hidden = [
-        'password', 
-        'remember_token',
-        'verification_token',
-    ];
 
     public function esVerificado()
     {

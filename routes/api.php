@@ -71,3 +71,4 @@ Route::resource('vendedores.productos','Vendedor\VendedorProductoController',
 
 Route::resource('users','User\UserController',
                 ['except' => ['create','edit']]);
+Route::name('verify')->get('users/verify/{token}', 'User\UserController@verify');
