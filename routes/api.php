@@ -42,6 +42,12 @@ Route::resource('categorias.compradores','Categoria\CategoriaCompradorController
 
 Route::resource('productos','Producto\ProductoController',
                 ['only' => ['index','show']]);
+Route::resource('productos.transacciones','Producto\ProductoTransaccionController',
+                ['only' => ['index','show']]);
+Route::resource('productos.compradores','Producto\ProductoCompradorController',
+                ['only' => ['index','show']]);
+Route::resource('productos.categoria','Producto\ProductoCategoriaController',
+                ['only' => ['index','show']]);
 
 Route::resource('transacciones','Transaccion\TransaccionController',
                 ['only' => ['index','show']]);
