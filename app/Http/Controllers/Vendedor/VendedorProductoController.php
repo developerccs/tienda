@@ -84,6 +84,8 @@ class VendedorProductoController extends ApiController
     {
         $this->verificarVendedor($vendedore, $producto);
 
+        Storage::delete($producto->imagen);
+
         $producto->delete();
 
         return $this->showOne($producto);
