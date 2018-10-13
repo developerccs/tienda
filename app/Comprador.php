@@ -2,6 +2,7 @@
 
 namespace App;
 use App\Transaccion;
+use App\Transformer\CompradorTransformer;
 use App\Scopes\CompradorScope;
 
 
@@ -12,6 +13,8 @@ class Comprador extends User
 		parent::boot();
 		static::addGlobalScope(new CompradorScope);
 	}
+
+    public $transformer = CompradorTransformer::class;
 
     public function transacciones()
     {

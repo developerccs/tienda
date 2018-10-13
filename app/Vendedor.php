@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Producto;
+use App\Transformer\VendedorTransformer;
 use App\Scopes\VendedorScope;
 
 
@@ -14,6 +15,8 @@ class Vendedor extends User
 		static::addGlobalScope(new VendedorScope);
     }
     
+    public $transformer = VendedorTransformer::class;
+
     public function productos()
     {
         return $this->hasMany(Producto::class);

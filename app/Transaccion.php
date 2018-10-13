@@ -4,13 +4,15 @@ namespace App;
 
 use App\Comprador;
 use App\Producto;
-
+use App\Transformer\TransaccionTransformer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaccion extends Model
 {
     use SoftDeletes;
+
+    public $transformer = TransformacionTransformer::class;
     
     protected $dates = ['deleted_at'];
 

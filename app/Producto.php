@@ -4,7 +4,7 @@ namespace App;
 use App\Vendedor;
 use App\Transaccion;
 use App\Categoria;
-
+use App\Transformer\ProductoTransformer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -14,6 +14,8 @@ class Producto extends Model
 
     const PRODUCTO_DISPONIBLE = 'DISPONIBLE';
     const PRODUCTO_NO_DISPONIBLE = 'NO DISPONIBLE';
+
+    public $transformer = ProductoTransformer::class;
 
     protected $dates = ['deleted_at'];
     

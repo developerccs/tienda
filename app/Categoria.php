@@ -2,7 +2,7 @@
 
 namespace App;
 use App\Producto;
-
+use App\Transformer\CategoriaTransformer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -10,6 +10,8 @@ class Categoria extends Model
 {
     use SoftDeletes;
     
+    public $transformer = CategoriaTransformer::class;
+
     protected $dates = ['deleted_at'];
     
     protected $fillable = [
