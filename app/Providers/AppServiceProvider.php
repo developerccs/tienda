@@ -25,6 +25,12 @@ class AppServiceProvider extends ServiceProvider
             Mail::to($user)->send(new UserCreated($user));
         });
 
+        User::updated(function($user) {
+            if ($user->isDirty('email')) {
+                Mail::to($user)->send(new UserMailChanged($user));
+            } 
+        });
+
         Producto::updated(function($producto) {
             if ($producto->cantidad == 0 && $producto->disponibilidad()) {
                 $producto->estatus = Producto::PRODUCTO_NO_DISPONIBLE;
