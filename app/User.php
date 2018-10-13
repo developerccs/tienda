@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Transformer\UserTransformer;
+use App\Transformers\UserTransformer;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;

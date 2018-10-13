@@ -3,7 +3,7 @@
 namespace App;
 
 use App\Producto;
-use App\Transformer\VendedorTransformer;
+use App\Transformers\VendedorTransformer;
 use App\Scopes\VendedorScope;
 
 

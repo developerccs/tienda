@@ -2,7 +2,7 @@
 
 namespace App;
 use App\Producto;
-use App\Transformer\CategoriaTransformer;
+use App\Transformers\CategoriaTransformer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

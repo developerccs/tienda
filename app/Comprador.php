@@ -2,7 +2,7 @@
 
 namespace App;
 use App\Transaccion;
-use App\Transformer\CompradorTransformer;
+use App\Transformers\CompradorTransformer;
 use App\Scopes\CompradorScope;
 
 

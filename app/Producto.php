@@ -4,7 +4,7 @@ namespace App;
 use App\Vendedor;
 use App\Transaccion;
 use App\Categoria;
-use App\Transformer\ProductoTransformer;
+use App\Transformers\ProductoTransformer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
