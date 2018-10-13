@@ -21,7 +21,7 @@ class VendedorTransformer extends TransformerAbstract
             'esVerificado' => (int)$vendedore->verified,
             'fechaCreacion' => (string)$vendedore->created_at,
             'fechaActualizacion' => (string)$vendedore->updated_at,
-            'fechaEliminacion' => isset($vendedore->deleted_at) ? (string) $buyer->deleted_at : null,
+            'fechaEliminacion' => isset($vendedore->deleted_at) ? (string) $vendedore->deleted_at : null,
         ];
     }
 }

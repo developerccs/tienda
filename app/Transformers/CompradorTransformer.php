@@ -21,7 +21,7 @@ class CompradorTransformer extends TransformerAbstract
             'esVerificado' => (int)$compradore->verified,
             'fechaCreacion' => (string)$compradore->created_at,
             'fechaActualizacion' => (string)$compradore->updated_at,
-            'fechaEliminacion' => isset($compradore->deleted_at) ? (string) $buyer->deleted_at : null,
+            'fechaEliminacion' => isset($compradore->deleted_at) ? (string) $compradore->deleted_at : null,
         ];
     }
 }
