@@ -12,6 +12,8 @@ class UserCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $user;
+
     /**
      * Create a new message instance.
      *
@@ -29,6 +31,6 @@ class UserCreated extends Mailable
      */
     public function build()
     {
-        return $this->text('emails.welcome');
+        return $this->text('emails.welcome')->subject('Por favor confirma tu correo electrónico');
     }
 }
