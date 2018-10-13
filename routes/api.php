@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
     return $request->user();
 });*/
 
+//Compradores
 Route::resource('compradores','Comprador\CompradorController',
                 ['only' => ['index','show']]);
 Route::resource('compradores.transacciones','Comprador\CompradorTransaccionController',
@@ -29,35 +30,7 @@ Route::resource('compradores.vendedores','Comprador\CompradorVendedorController'
 Route::resource('compradores.categorias','Comprador\CompradorCategoriaController',
                 ['only' => ['index']]);
 
-Route::resource('categorias','Categoria\CategoriaController',
-                ['except' => ['create','edit']]);
-Route::resource('categorias.productos','Categoria\CategoriaProductoController',
-                ['only' => ['index']]);
-Route::resource('categorias.vendedores','Categoria\CategoriaVendedorController',
-                ['only' => ['index']]);
-Route::resource('categorias.transacciones','Categoria\CategoriaTransaccionController',
-                ['only' => ['index']]);
-Route::resource('categorias.compradores','Categoria\CategoriaCompradorController',
-                ['only' => ['index']]);
-
-Route::resource('productos','Producto\ProductoController',
-                ['only' => ['index','show']]);
-Route::resource('productos.transacciones','Producto\ProductoTransaccionController',
-                ['only' => ['index','show']]);
-Route::resource('productos.compradores','Producto\ProductoCompradorController',
-                ['only' => ['index','show']]);
-Route::resource('productos.categorias','Producto\ProductoCategoriaController',
-                ['only' => ['index','update','destroy']]);
-Route::resource('productos.compradores.transacciones','Producto\ProductoCompradorTransaccionController',
-                ['only' => ['store']]);
-
-Route::resource('transacciones','Transaccion\TransaccionController',
-                ['only' => ['index','show']]);
-Route::resource('transacciones.categorias','Transaccion\TransaccionCategoriaController',
-                ['only' => ['index']]);
-Route::resource('transacciones.vendedores','Transaccion\TransaccionVendedorController',
-                ['only' => ['index']]);
-
+//Vendedores
 Route::resource('vendedores','Vendedor\VendedorController',
                 ['only' => ['index','show']]);
 Route::resource('vendedores.transacciones','Vendedor\VendedorTransaccionController',
@@ -69,6 +42,39 @@ Route::resource('vendedores.compradores','Vendedor\VendedorCompradorController',
 Route::resource('vendedores.productos','Vendedor\VendedorProductoController',
                 ['except' => ['create', 'show', 'edit']]);
 
+//Productos
+Route::resource('productos','Producto\ProductoController',
+                ['only' => ['index','show']]);
+Route::resource('productos.transacciones','Producto\ProductoTransaccionController',
+                ['only' => ['index','show']]);
+Route::resource('productos.compradores','Producto\ProductoCompradorController',
+                ['only' => ['index','show']]);
+Route::resource('productos.categorias','Producto\ProductoCategoriaController',
+                ['only' => ['index','update','destroy']]);
+Route::resource('productos.compradores.transacciones','Producto\ProductoCompradorTransaccionController',
+                ['only' => ['store']]);
+
+//Categorias
+Route::resource('categorias','Categoria\CategoriaController',
+                ['except' => ['create','edit']]);
+Route::resource('categorias.productos','Categoria\CategoriaProductoController',
+                ['only' => ['index']]);
+Route::resource('categorias.vendedores','Categoria\CategoriaVendedorController',
+                ['only' => ['index']]);
+Route::resource('categorias.transacciones','Categoria\CategoriaTransaccionController',
+                ['only' => ['index']]);
+Route::resource('categorias.compradores','Categoria\CategoriaCompradorController',
+                ['only' => ['index']]);
+
+//Transacciones
+Route::resource('transacciones','Transaccion\TransaccionController',
+                ['only' => ['index','show']]);
+Route::resource('transacciones.categorias','Transaccion\TransaccionCategoriaController',
+                ['only' => ['index']]);
+Route::resource('transacciones.vendedores','Transaccion\TransaccionVendedorController',
+                ['only' => ['index']]);
+
+//Usuarios
 Route::resource('users','User\UserController',
                 ['except' => ['create','edit']]);
 Route::name('verify')->get('users/verify/{token}', 'User\UserController@verify');
