@@ -22,6 +22,33 @@ class VendedorTransformer extends TransformerAbstract
             'fechaCreacion' => (string)$vendedore->created_at,
             'fechaActualizacion' => (string)$vendedore->updated_at,
             'fechaEliminacion' => isset($vendedore->deleted_at) ? (string) $vendedore->deleted_at : null,
+        
+            'links' => [
+                [
+                    'rel' => 'self',
+                    'href' => route('vendedores.show', $vendedore->id),
+                ],
+                [
+                    'rel' => 'vendedor.compradores',
+                    'href' => route('vendedores.compradores.index', $vendedore->id),
+                ],
+                [
+                    'rel' => 'vendedor.categorias',
+                    'href' => route('vendedores.categorias.index', $vendedore->id),
+                ],
+                [
+                    'rel' => 'vendedor.productos',
+                    'href' => route('vendedores.productos.index', $vendedore->id),
+                ],
+                [
+                    'rel' => 'vendedor.transacciones',
+                    'href' => route('vendedores.transacciones.index', $vendedore->id),
+                ],
+                [
+                    'rel' => 'user',
+                    'href' => route('users.show', $vendedore->id),
+                ],
+            ],
         ];
     }
 
