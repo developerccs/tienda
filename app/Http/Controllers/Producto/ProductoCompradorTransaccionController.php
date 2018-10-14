@@ -6,12 +6,18 @@ use App\Producto;
 use App\User;
 use App\Transaccion;
 use Illuminate\Http\Request;
+use App\Transformers\TransaccionTransformer;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ApiController;
 use App\Transformers\TransactionTransformer;
 
 class ProductoCompradorTransaccionController extends ApiController
 {
+    public function __construct()
+    {
+        $this->middleware('transform.input:' . TransaccionTransformer::class)->only(['store']);
+    }
+
     public function store(Request $request, Producto $producto, User $compradore)
     {
         $reglas = [

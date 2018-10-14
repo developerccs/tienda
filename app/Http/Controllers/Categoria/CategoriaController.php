@@ -8,6 +8,10 @@ use App\Http\Controllers\ApiController;
 
 class CategoriaController extends ApiController
 {
+    public function __construct()
+    {
+        $this->middleware('transform.input:' . CategoriaTransformer::class)->only(['store']);
+    }
 
     public function index()
     {
