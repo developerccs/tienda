@@ -4,15 +4,19 @@ namespace App\Exceptions;
 
 use Exception;
 use App\Traits\ApiResponser;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Asm89\Stack\CorsService;
+use Illuminate\Database\QueryException;
+
+use Illuminate\Session\TokenMismatchException;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
-use Symfony\Component\HttpKernel\Exception\HttpException;
-use Illuminate\Database\QueryException;
+use  Illuminate\Auth\AuthenticationException as AuthenticationException;
+
 
 
 class Handler extends ExceptionHandler
@@ -126,7 +130,17 @@ class Handler extends ExceptionHandler
     protected function convertValidationExceptionToResponse(ValidationException $e, $request)
     {
         $errors = $e->validator->errors()->getMessages();
+        if ($this->isFrontend($request)) {
+            return $request->ajax() ? response()->json($errors, 422) : redirect()
+                ->back()
+                ->withInput($request->input())
+                ->withErrors($errors);
+        }
+        return $this->errorResponse($errors, 422);
+    }
 
-        return response()->json($errors, 422);
+    private function isFrontend($request)
+    {
+        return $request->acceptsHtml() && collect($request->route()->middleware())->contains('web');
     }
 }
