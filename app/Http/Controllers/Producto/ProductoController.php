@@ -8,6 +8,10 @@ use App\Http\Controllers\ApiController;
 
 class ProductoController extends ApiController
 {
+    public function __construct()
+    {
+        $this->middleware('client.credentials:')->only(['index', 'show']);
+    }
 
     public function index()
     {

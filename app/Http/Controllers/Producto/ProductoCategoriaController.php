@@ -9,6 +9,11 @@ use App\Http\Controllers\ApiController;
 
 class ProductoCategoriaController extends ApiController
 {
+    public function __construct()
+    {
+        $this->middleware('client.credentials:')->only(['index']);
+    }
+    
     public function index(Producto $producto)
     {
         $categorias = $producto->categorias;
