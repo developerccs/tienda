@@ -22,6 +22,33 @@ class CompradorTransformer extends TransformerAbstract
             'fechaCreacion' => (string)$compradore->created_at,
             'fechaActualizacion' => (string)$compradore->updated_at,
             'fechaEliminacion' => isset($compradore->deleted_at) ? (string) $compradore->deleted_at : null,
+        
+            'links' => [
+                [
+                    'rel' => 'self',
+                    'href' => route('compradores.show', $compradore->id),
+                ],
+                [
+                    'rel' => 'comprador.categorias',
+                    'href' => route('compradores.categorias.index', $compradore->id),
+                ],
+                [
+                    'rel' => 'comprador.productos',
+                    'href' => route('compradores.productos.index', $compradore->id),
+                ],
+                [
+                    'rel' => 'comprador.vendedores',
+                    'href' => route('compradores.vendedores.index', $compradore->id),
+                ],
+                [
+                    'rel' => 'comprador.transacciones',
+                    'href' => route('compradores.transacciones.index', $compradore->id),
+                ],
+                [
+                    'rel' => 'user',
+                    'href' => route('users.show', $compradore->id),
+                ],
+            ],
         ];
     }
 
