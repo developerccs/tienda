@@ -11,7 +11,7 @@ class CategoriaController extends ApiController
 {
     public function __construct()
     {
-        $this->middleware('client.credentials:')->only(['index', 'show']);
+        $this->middleware('client.credentials')->only(['index', 'show']);
         $this->middleware('transform.input:' . CategoriaTransformer::class)->only(['store', 'update']);
     }
 
