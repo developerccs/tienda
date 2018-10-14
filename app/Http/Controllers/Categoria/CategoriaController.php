@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Categoria;
 use App\Categoria;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
+use App\Transformers\CategoriaTransformer;
 
 class CategoriaController extends ApiController
 {
     public function __construct()
     {
-        $this->middleware('transform.input:' . CategoriaTransformer::class)->only(['store']);
+        $this->middleware('transform.input:' . CategoriaTransformer::class)->only(['store', 'update']);
     }
 
     public function index()
