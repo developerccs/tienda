@@ -8,7 +8,11 @@ use App\Http\Controllers\ApiController;
 
 class CompradorController extends ApiController
 {
- 
+    public function __construct()
+    {
+        parent::__construct();
+    }
+    
     public function index()
     {
         $compradores = Comprador::has('transacciones')->get();

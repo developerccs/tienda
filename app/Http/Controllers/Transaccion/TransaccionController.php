@@ -8,7 +8,11 @@ use App\Http\Controllers\ApiController;
 
 class TransaccionController extends ApiController
 {
-
+    public function __construct()
+    {
+        parent::__construct();
+    }
+    
     public function index()
     {
         $transacciones = Transaccion::all();

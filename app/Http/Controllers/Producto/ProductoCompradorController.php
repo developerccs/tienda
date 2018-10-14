@@ -8,6 +8,11 @@ use App\Http\Controllers\ApiController;
 
 class ProductoCompradorController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+    
     public function index(Producto $producto)
     {
         $compradores = $producto->transacciones()
