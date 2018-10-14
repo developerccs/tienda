@@ -73,9 +73,19 @@ trait ApiResponser
     
 	protected function paginate(Collection $collection)
 	{
+        $reglas = [
+			'per_page' => 'integer|min:2|max:50'
+        ];
+        
+        Validator::validate(request()->all(), $reglas);  //facades validación
+        
         $page = LengthAwarePaginator::resolveCurrentPage();
         
-		$perPage = 15;
+        $perPage = 15;
+        
+        if (request()->has('per_page')) {
+			$perPage = (int) request()->per_page;
+		}
 	
         $results = $collection->slice(($page - 1) * $perPage, $perPage)->values();
         
