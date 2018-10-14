@@ -16,7 +16,7 @@ class CategoriaTransformer extends TransformerAbstract
     {
         return [
             'identificador' => (int)$categoria->id,
-            'titulo' => (string)$categoria->name,
+            'titulo' => (string)$categoria->nombre,
             'detalles' => (string)$categoria->descripcion,
             'fechaCreacion' => (string)$categoria->created_at,
             'fechaActualizacion' => (string)$categoria->updated_at,

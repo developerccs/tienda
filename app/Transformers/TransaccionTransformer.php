@@ -22,6 +22,29 @@ class TransaccionTransformer extends TransformerAbstract
             'fechaCreacion' => (string)$transaccione->created_at,
             'fechaActualizacion' => (string)$transaccione->updated_at,
             'fechaEliminacion' => isset($transaccione->deleted_at) ? (string) $transaccione->deleted_at : null,
+        
+            'links' => [
+                [
+                    'rel' => 'self',
+                    'href' => route('transacciones.show', $transaccione->id),
+                ],
+                [
+                    'rel' => 'transaccion.categorias',
+                    'href' => route('transacciones.categorias.index', $transaccione->id),
+                ],
+                [
+                    'rel' => 'transaccion.vendedor',
+                    'href' => route('transacciones.vendedores.index', $transaccione->id),
+                ],
+                [
+                    'rel' => 'comprador',
+                    'href' => route('compradores.show', $transaccione->comprador_id),
+                ],
+                [
+                    'rel' => 'producto',
+                    'href' => route('productos.show', $transaccione->producto_id),
+                ],
+            ],
         ];
     }
 
