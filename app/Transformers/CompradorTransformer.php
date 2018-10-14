@@ -1,8 +1,8 @@
 <?php
 
-use App\Comprador;
 namespace App\Transformers;
 
+use App\Comprador;
 use League\Fractal\TransformerAbstract;
 
 class CompradorTransformer extends TransformerAbstract

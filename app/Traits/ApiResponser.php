@@ -2,13 +2,11 @@
 
 namespace App\Traits;
 
-use App\Transformers;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Pagination\LengthAwarePaginator;
-
 
 trait ApiResponser
 {
@@ -100,11 +98,11 @@ trait ApiResponser
 		return $paginated;
 	}
     
-    protected function transformData($data, $transformer)
+	protected function transformData($data, $transformer)
 	{
 		$transformation = fractal($data, new $transformer);
 		return $transformation->toArray();
-    }
+	}
     
     protected function cacheResponse($data)
 	{

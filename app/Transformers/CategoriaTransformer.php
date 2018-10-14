@@ -22,6 +22,28 @@ class CategoriaTransformer extends TransformerAbstract
             'fechaActualizacion' => (string)$categoria->updated_at,
             'fechaEliminacion' => isset($categoria->deleted_at) ? (string) $categoria->deleted_at : null,
 
+            'links' => [
+                [
+                    'rel' => 'self',
+                    'href' => route('categorias.show', $categoria->id),
+                ],
+                [
+                    'rel' => 'categoria.compradores',
+                    'href' => route('categorias.compradores.index', $categoria->id),
+                ],
+                [
+                    'rel' => 'categoria.productos',
+                    'href' => route('categorias.productos.index', $categoria->id),
+                ],
+                [
+                    'rel' => 'categoria.vendedores',
+                    'href' => route('categorias.vendedores.index', $categoria->id),
+                ],
+                [
+                    'rel' => 'categoria.transacciones',
+                    'href' => route('categorias.transacciones.index', $categoria->id),
+                ],
+            ],
         ];
     }
 
