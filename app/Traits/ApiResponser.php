@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Transformers;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -107,9 +108,17 @@ trait ApiResponser
     
     protected function cacheResponse($data)
 	{
-		$url = request()->url();
+        $url = request()->url();
+        
+        $queryParams = request()->query();
 
-		return Cache::remember($url, 30/60, function() use($data) {
+        ksort($queryParams);
+        
+        $queryString = http_build_query($queryParams);
+        
+		$fullUrl = "{$url}?{$queryString}";
+
+		return Cache::remember($fullUrl, 30/60, function() use($data) {
 			return $data;
 		});
 	}
